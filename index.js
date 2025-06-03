@@ -1,13 +1,26 @@
-import express from "express";
+/*import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
-
 app.use(cors());
 
+// MongoDB connection
+mongoose.connect("mongodb://localhost:27017/gcet")
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// Define user schema
+const userSchema = new mongoose.Schema({
+  name: { type: String }
+});
+
+// Define user model
+const User = mongoose.model("User", userSchema);
+
+// Routes
 app.get("/", (req, res) => {
-  return res.send("Good Morning");
+  res.send("Good Morning");
 });
 
 app.get("/greet", (req, res) => {
@@ -22,7 +35,6 @@ app.get("/weather", (req, res) => {
   res.send("31degree");
 });
 
-
 app.get("/products", (req, res) => {
   const products = [
     { name: "laptop", price: 34 },
@@ -31,7 +43,62 @@ app.get("/products", (req, res) => {
   ];
   res.json(products);
 });
+
+// Register route — adds a user named "john"
+app.get("/register", async (req, res) => {
+  try {
+    const result = await User.create({ name: "john" });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Start server
 app.listen(8080, () => {
-  mongoose.connect("")
-  console.log("Server Started on port 8080");
+  console.log("🚀 Server started on port 8080");
+});*/
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+const app = express();
+app.listen(8080, () => {
+  mongoose.connect("mongodb://localhost:27017/gcet");
+  console.log("Server Started");
+});
+app.use(cors());
+app.get("/", (req, res) => {
+  return res.send("Good Morning");
+});
+
+const userSchema = mongoose.Schema({
+  name:{type: String},
+});
+
+const user = mongoose.model("User",userSchema);
+
+app.get("/greet", (req, res) => {
+  res.send("Greetings");
+});
+
+app.get("/register",async (req,res) => {
+  const result = await user.insertOne({name : "Jhon"});
+  return res.json(result);
+});
+
+app.get("/name", (req, res) => {
+  res.send("arun");
+});
+
+app.get("/weather", (req, res) => {
+  res.send("31degree");
+});
+
+app.get("/products", (req, res) => {
+  const products = [
+    { name: "Product 1", price: 34 },
+    { name: "Product 2", price: 64 },
+    { name: "Product 3", price: 45 },
+  ];
+  res.json(products);
 });
