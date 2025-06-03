@@ -67,6 +67,7 @@ app.listen(8080, () => {
   console.log("Server Started");
 });
 app.use(cors());
+app.use(express.json())
 app.get("/", (req, res) => {
   return res.send("Good Morning");
 });
@@ -82,7 +83,8 @@ app.get("/greet", (req, res) => {
 });
 
 app.get("/register",async (req,res) => {
-  const result = await user.insertOne({name : "Jhon"});
+  const {name}=req.body
+  const result = await user.insertOne({name : name});
   return res.json(result);
 });
 
