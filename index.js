@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.get("/products", (req, res) => {
   res.json(products);
 });
 app.listen(8080, () => {
+  mongoose.connect("")
   console.log("Server Started on port 8080");
 });
