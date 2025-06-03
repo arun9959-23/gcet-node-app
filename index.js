@@ -150,7 +150,7 @@ app.get("/weather", (req, res) => {
   res.send("31degree");
 });
 
-app.get("/products", (req, res) => {
+app.get("/product", (req, res) => {
   const products = [
     { name: "Product 1", price: 34 },
     { name: "Product 2", price: 64 },
@@ -171,7 +171,7 @@ app.post("/register", async (req, res) => {
 });
 app.post("/Products", async (req, res) => {
   const{name, price}=req.body;
-  const products=await Products.insertOne({name,price});
+  const products=await Products.findOne({name,price});
   return res.json(result);
   
 });
