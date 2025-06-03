@@ -24,9 +24,9 @@ app.get("/weather", (req, res) => {
 
 app.get("/products", (req, res) => {
   const products = [
-    { name: "Product 1", price: 34 },
-    { name: "Product 2", price: 64 },
-    { name: "Product 3", price: 45 },
+    { name: "laptop", price: 34 },
+    { name: "phone", price: 64 },
+    { name: "telephone", price: 45 },
   ];
   res.json(products);
 });
