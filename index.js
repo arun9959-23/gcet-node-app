@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/products", productRouter);
-app.use("/orders",orderRouter)
+app.use("/order",orderRouter)
 
 app.listen(8080, () => {
   mongoose.connect("mongodb://localhost:27017/gcet");
