@@ -11,7 +11,7 @@ router.post("/new", async (req, res) => {
   console.log("req.body:", req.body);  
   const { name, price } = req.body;
   const order = await Order.create({ name, price });
-  res.json(order);
+  res.json(products);
 });
 
 export default productRouter
