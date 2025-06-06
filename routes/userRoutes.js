@@ -12,7 +12,6 @@ userRouter.post("/register", async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Check if user already exists
     const existing = await userModel.findOne({ email });
     if (existing) {
       return res.status(409).json({ message: "User already exists" });
